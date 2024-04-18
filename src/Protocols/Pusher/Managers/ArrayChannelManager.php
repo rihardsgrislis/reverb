@@ -48,6 +48,14 @@ class ArrayChannelManager implements ChannelManagerInterface
     }
 
     /**
+     * Determine whether the given channel exists.
+     */
+    public function exists(string $channel): bool
+    {
+        return isset($this->applications[$this->application->id()][$channel]);
+    }
+
+    /**
      * Find the given channel
      */
     public function find(string $channel): ?Channel
@@ -106,7 +114,7 @@ class ArrayChannelManager implements ChannelManagerInterface
     /**
      * Get the given channel.
      */
-    public function channel(string $channel): Channel
+    public function channel(string $channel): ?Channel
     {
         return $this->channels($channel);
     }
@@ -114,7 +122,7 @@ class ArrayChannelManager implements ChannelManagerInterface
     /**
      * Get the channels for the application.
      *
-     * @return \Laravel\Reverb\Protocols\Pusher\Channels\Channel|array<string, \Laravel\Reverb\Protocols\Pusher\Channels\Channel>
+     * @return \Laravel\Reverb\Protocols\Pusher\Channels\Channel|array<string, \Laravel\Reverb\Protocols\Pusher\Channels\Channel>|null
      */
     public function channels(?string $channel = null): Channel|array|null
     {

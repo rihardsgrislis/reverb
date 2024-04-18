@@ -1,6 +1,6 @@
 {
-    "name": "laravel/reverb",
-    "description": "Laravel Reverb provides a real-time WebSocket communication backend for Laravel applications.",
+    "name": "rihardsgrislis/reverb",
+    "description": "Custom fork of Laravel Reverb that emits the MessageReceived event for all messages.",
     "keywords": [
         "laravel",
         "websocket",

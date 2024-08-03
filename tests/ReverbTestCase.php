@@ -93,7 +93,7 @@ class ReverbTestCase extends TestCase
      */
     protected function resetFiber(): void
     {
-        $fiber = new SimpleFiber();
+        $fiber = new SimpleFiber;
         $fiberRef = new ReflectionObject($fiber);
         $scheduler = $fiberRef->getProperty('scheduler');
         $scheduler->setAccessible(true);
@@ -136,6 +136,20 @@ class ReverbTestCase extends TestCase
             ->request(
                 $method,
                 "http://{$host}:{$port}/apps/{$appId}/{$path}",
+                [],
+                ($data) ? json_encode($data) : ''
+            );
+    }
+
+    /**
+     * Send a request to the server without specifying app ID.
+     */
+    public function requestWithoutAppId(string $path, string $method = 'GET', mixed $data = '', string $host = '0.0.0.0', string $port = '8080'): PromiseInterface
+    {
+        return (new Browser($this->loop))
+            ->request(
+                $method,
+                "http://{$host}:{$port}/{$path}",
                 [],
                 ($data) ? json_encode($data) : ''
             );

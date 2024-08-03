@@ -312,7 +312,7 @@ it('fails to subscribe to a presence cache channel with invalid auth signature',
 });
 
 it('fails to connect when an invalid application is provided', function () {
-    $promise = new Deferred();
+    $promise = new Deferred;
 
     $connection = await(
         wsConnect('ws://0.0.0.0:8080/app/invalid-key')
@@ -369,7 +369,7 @@ it('cannot connect from an invalid origin', function () {
         wsConnect('ws://0.0.0.0:8080/app/reverb-key-3')
     );
 
-    $promise = new Deferred();
+    $promise = new Deferred;
 
     $connection->on('message', function ($message) use ($promise) {
         $promise->resolve((string) $message);
@@ -469,4 +469,16 @@ it('buffers large requests correctly', function () {
 
     expect($response->getStatusCode())->toBe(200);
     expect($response->getBody()->getContents())->toBe('{}');
+});
+
+it('subscription_succeeded event contains unique list of users', function () {
+    $data = ['user_id' => 1, 'user_info' => ['name' => 'Test User']];
+    subscribe('presence-test-channel', data: $data);
+    $data = ['user_id' => 1, 'user_info' => ['name' => 'Test User']];
+    $response = subscribe('presence-test-channel', data: $data);
+
+    expect($response)->toContain('pusher_internal:subscription_succeeded');
+    expect($response)->toContain('"count\":1');
+    expect($response)->toContain('"ids\":[1]');
+    expect($response)->toContain('"hash\":{\"1\":{\"name\":\"Test User\"}}');
 });

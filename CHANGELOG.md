@@ -1,6 +1,19 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/reverb/compare/v1.3.0...main)
+## [Unreleased](https://github.com/laravel/reverb/compare/v1.4.1...main)
+
+## [v1.4.1](https://github.com/laravel/reverb/compare/v1.4.0...v1.4.1) - 2024-10-04
+
+* [1.x] Re-subscribes to the scaling channel when the underlying connection is lost by [@ashiquzzaman33](https://github.com/ashiquzzaman33) in https://github.com/laravel/reverb/pull/251
+
+## [v1.4.0](https://github.com/laravel/reverb/compare/v1.3.1...v1.4.0) - 2024-10-01
+
+* [1.x] Implements API signature verification by [@joedixon](https://github.com/joedixon) in https://github.com/laravel/reverb/pull/252
+* [1.x] Supports Laravel Prompts 0.3 by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/reverb/pull/255
+
+## [v1.3.1](https://github.com/laravel/reverb/compare/v1.3.0...v1.3.1) - 2024-09-19
+
+* [1.x] Supports `laravel/prompts` v0.2 by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/reverb/pull/249
 
 ## [v1.3.0](https://github.com/laravel/reverb/compare/v1.2.0...v1.3.0) - 2024-09-03
 
